@@ -7,9 +7,26 @@ if (canvas.getContext) {
     ctx.fillStyle = 'rgba(255,0,0,0.1)';
     ctx.lineWidth = 5;
 
-    ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, 100, 0, 2 * Math.PI);
+    const centerX = 100;
+    const centerY = 100;
+    const radius = 80;
 
+    const points = [];
+
+
+    ctx.beginPath();
+
+    for (let i = 0, sides = 60; i < sides; i ++) {
+        const angle = (i / sides) * 2 * Math.PI;
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+
+        points.push({x, y});
+        ctx.lineTo(x,y);
+    }
+
+    ctx.closePath();
     ctx.stroke();
-    ctx.fill();
+
+    console.log(points);
 }
